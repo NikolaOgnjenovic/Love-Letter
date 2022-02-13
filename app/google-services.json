@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "972937522200",
+    "project_id": "hagz-7bfb6",
+    "storage_bucket": "hagz-7bfb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972937522200:android:c4f0910a47d7c6cd5a676d",
+        "android_client_info": {
+          "package_name": "com.example.hagz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972937522200-19ks5v6fn0sgphama4enos3cqkirf2d6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtEQ5G5TkS-M2J8Qpx5RjF3tbRWLQY5lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972937522200-19ks5v6fn0sgphama4enos3cqkirf2d6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
