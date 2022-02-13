@@ -5,6 +5,8 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -26,12 +28,14 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
+        //Save partner's needs (the content of the received notification) in shared preferences
+        getSharedPreferences("SharedPreferences", MODE_PRIVATE).edit().putString("partnerNeeds", Objects.requireNonNull(remoteMessage.getNotification()).getBody()).apply();
+
         getNotificationManager();
         createNotificationChannel();
         notifyUser(remoteMessage);
+        updateWidget(Objects.requireNonNull(remoteMessage.getNotification()).getBody());
 
-        //Save partner's needs (the content of the received notification) in shared preferences
-        getSharedPreferences("SharedPreferences", MODE_PRIVATE).edit().putString("partnerNeeds", Objects.requireNonNull(remoteMessage.getNotification()).getBody()).apply();
     }
 
     private void notifyUser(RemoteMessage remoteMessage) {
@@ -46,7 +50,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         builder.setContentTitle("Hagz");
         builder.setContentText("Your partner wants you to know that their mood has changed!");
         builder.setContentIntent(pendingIntent);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(remoteMessage.getNotification().getBody()));
+        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(Objects.requireNonNull(remoteMessage.getNotification()).getBody()));
         builder.setAutoCancel(true);
         builder.setPriority(Notification.PRIORITY_MAX);
         builder.setChannelId(channelId);
@@ -71,5 +75,16 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     private void getNotificationManager() {
         notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+
+    private void updateWidget(String partnerNeedsText) {
+        Intent intent = new Intent(this, AppWidgetProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
+        // since it seems the onUpdate() is only fired on that:
+        int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), AppWidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        //intent.putExtra("PartnerNeedsText", partnerNeedsText);
+        sendBroadcast(intent);
     }
 }
