@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5sp"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/help"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_revert" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/userNeedsView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/help"
+                android:textSize="30sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:background="@color/theme_primary"
+                app:cardCornerRadius="20sp"
+                app:contentPadding="20sp">
+
+                <LinearLayout
+                    android:id="@+id/help1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:background="@color/theme_primary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/theme_primary"
+                        android:text="@string/help"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/help1Details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/theme_primary"
+                        android:text="@string/send_to_partner"
+                        android:textSize="40sp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:background="@color/theme_primary"
+                app:cardCornerRadius="20sp"
+                app:contentPadding="20sp">
+
+                <LinearLayout
+                    android:id="@+id/help2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:background="@color/theme_primary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/theme_primary"
+                        android:text="@string/help"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/help2Details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/theme_primary"
+                        android:text="@string/send_to_partner"
+                        android:textSize="40sp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

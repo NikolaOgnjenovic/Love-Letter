@@ -2,12 +2,14 @@ package com.example.hagz;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView partnerMoodView, partnerNeedsView, userTokenView, userMoodView, userNeedsView;
     private String userToken;
     private SharedPreferences sharedPreferences;
+    private ImageButton helpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
         initialiseViews();
         initialiseListeners();
         initialiseObjects();
+    }
+
+    //Quit the app when the user presses the back button
+    @Override
+    public void onBackPressed() {
+        Intent quitIntent = new Intent(Intent.ACTION_MAIN);
+        quitIntent.addCategory(Intent.CATEGORY_HOME);
+        quitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(quitIntent);
     }
 
     private void initialiseViews() {
@@ -45,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         partnerMoodView = findViewById(R.id.partnerMoodView);
         userMoodView = findViewById(R.id.userMoodView);
         userNeedsView = findViewById(R.id.userNeedsView);
+        helpButton = findViewById(R.id.helpButton);
     }
 
     private void initialiseListeners() {
@@ -69,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
+
+        //Open help activity on help button click
+        helpButton.setOnClickListener(v-> startActivity(new Intent(this, Help.class)));
     }
 
     private void initialiseObjects() {

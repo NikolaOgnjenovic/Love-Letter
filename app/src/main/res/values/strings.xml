@@ -11,4 +11,5 @@
     <string name="user_mood_input_hint">Tell your partner your mood</string>
     <string name="send_to_all">Send to all users</string>
     <string name="send_to_partner">Send to partner</string>
+    <string name="help">Help</string>
 </resources>
