@@ -17,10 +17,11 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
             //Get the widget view
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
-            views.setOnClickPendingIntent(R.id.view, pendingIntent); //Go to main activity on click
+            //Go to main activity on click
+            views.setOnClickPendingIntent(R.id.view, pendingIntent);
             //Display the partner's needs
             views.setTextViewText(R.id.widgetPartnerNeedsView, context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE).getString("partnerNeeds", ""));
-
+            views.setTextViewText(R.id.widgetPartnerMoodView, context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE).getString("partnerMood", ""));
             //Update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }

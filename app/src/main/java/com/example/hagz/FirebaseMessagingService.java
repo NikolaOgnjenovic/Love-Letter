@@ -9,6 +9,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -28,33 +29,25 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        //Save partner's needs (the content of the received notification) in shared preferences
-        getSharedPreferences("SharedPreferences", MODE_PRIVATE).edit().putString("partnerNeeds", Objects.requireNonNull(remoteMessage.getNotification()).getBody()).apply();
-
+        savePartnerValues(remoteMessage);
         getNotificationManager();
         createNotificationChannel();
-        notifyUser(remoteMessage);
-        updateWidget(Objects.requireNonNull(remoteMessage.getNotification()).getBody());
+        notifyUser();
+        updateWidget();
+    }
+
+    private void savePartnerValues(RemoteMessage remoteMessage) {
+        //Save partner's needs and mood (the content of the received notification) in shared preferences
+        SharedPreferences.Editor sharedPreferencesEditor = getSharedPreferences("SharedPreferences", MODE_PRIVATE).edit();
+        //sharedPreferencesEditor.putString("partnerMood", Objects.requireNonNull(remoteMessage.getNotification()).getTitle()).apply();
+        //sharedPreferencesEditor.putString("partnerNeeds", Objects.requireNonNull(remoteMessage.getNotification()).getBody()).apply();
+        sharedPreferencesEditor.putString("partnerMood", Objects.requireNonNull(remoteMessage.getData()).get("userMood")).apply();
+        sharedPreferencesEditor.putString("partnerNeeds", Objects.requireNonNull(remoteMessage.getData()).get("userNeeds")).apply();
 
     }
 
-    private void notifyUser(RemoteMessage remoteMessage) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID");
-        builder.setSmallIcon(android.R.drawable.btn_star);
-
-        Intent resultIntent = new Intent(this, MainActivity.class);
-        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        //builder.setContentTitle(Objects.requireNonNull(remoteMessage.getNotification()).getTitle());
-        //builder.setContentText(remoteMessage.getNotification().getBody());
-        builder.setContentTitle("Hagz");
-        builder.setContentText("Your partner wants you to know that their mood has changed!");
-        builder.setContentIntent(pendingIntent);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(Objects.requireNonNull(remoteMessage.getNotification()).getBody()));
-        builder.setAutoCancel(true);
-        builder.setPriority(Notification.PRIORITY_MAX);
-        builder.setChannelId(channelId);
-        notificationManager.notify(100, builder.build());
+    private void getNotificationManager() {
+        notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     //Create notification channel, used in Android versions above 8
@@ -73,18 +66,30 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
     }
 
-    private void getNotificationManager() {
-        notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+    private void notifyUser() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID");
+        builder.setSmallIcon(android.R.drawable.btn_star);
+
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        builder.setContentTitle("Hagz");
+        builder.setContentText("Your partner wants you to know that their mood has changed!");
+        builder.setStyle(new NotificationCompat.DecoratedCustomViewStyle());
+        builder.setContentIntent(pendingIntent);
+        builder.setAutoCancel(true);
+        builder.setPriority(Notification.PRIORITY_MAX);
+        builder.setChannelId(channelId);
+        notificationManager.notify(100, builder.build());
     }
 
-    private void updateWidget(String partnerNeedsText) {
+    private void updateWidget() {
         Intent intent = new Intent(this, AppWidgetProvider.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
         // since it seems the onUpdate() is only fired on that:
         int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), AppWidgetProvider.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-        //intent.putExtra("PartnerNeedsText", partnerNeedsText);
         sendBroadcast(intent);
     }
 }

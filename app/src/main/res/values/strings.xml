@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">hagz</string>
-    <string name="partner_needs">"Your partner needs: "</string>
+    <string name="partner_needs">Your partner needs: </string>
     <string name="user_needs">I need:</string>
     <string name="user_needs_input_hint">Tell your partner what you need</string>
     <string name="partners_token">Enter your partner\'s token</string>
-    <string name="user_token">"Your token: "</string>
+    <string name="user_token">Your token: </string>
     <string name="get_user_token">Show your token:</string>
     <string name="copied_user_token">Copied user token</string>
+    <string name="partner_mood">Your partner is: </string>
+    <string name="user_mood">My mood:</string>
+    <string name="user_mood_input_hint">Tell your partner your mood</string>
 </resources>

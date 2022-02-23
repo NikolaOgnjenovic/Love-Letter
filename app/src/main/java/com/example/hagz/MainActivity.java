@@ -15,9 +15,9 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText userNeedsInput, partnerToken;
+    private EditText userNeedsInput, partnerToken, userMoodInput;
     private Button sendAll, sendToPartner, getUserToken;
-    private TextView partnerNeedsView, userTokenView;
+    private TextView partnerNeedsView, userTokenView, partnerMoodView;
     private String userToken;
     private SharedPreferences sharedPreferences;
 
@@ -39,18 +39,20 @@ public class MainActivity extends AppCompatActivity {
         sendToPartner = findViewById(R.id.sendToPartner);
         userTokenView = findViewById(R.id.userToken);
         getUserToken = findViewById(R.id.getUserToken);
+        userMoodInput = findViewById(R.id.userMoodInput);
+        partnerMoodView = findViewById(R.id.partnerMoodView);
     }
 
     private void initialiseListeners() {
         //Send a notification to all users (temp)
         sendAll.setOnClickListener(v -> {
-            FcmNotificationSender notificationSender = new FcmNotificationSender("/topics/all", "Hagz notifier", userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
+            FcmNotificationSender notificationSender = new FcmNotificationSender("/topics/all", userMoodInput.getText().toString(), userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
             notificationSender.SendNotifications();
         });
 
         //Send a notification to the user with the partnerToken token
         sendToPartner.setOnClickListener(v -> {
-            FcmNotificationSender notificationSender = new FcmNotificationSender(partnerToken.getText().toString(), "Hagz notifier", userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
+            FcmNotificationSender notificationSender = new FcmNotificationSender(partnerToken.getText().toString(), userMoodInput.getText().toString(), userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
             notificationSender.SendNotifications();
         });
 
@@ -66,8 +68,12 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("SharedPreferences", MODE_PRIVATE);
 
         //Get partner's needs from Shared preferences and display them
-        String partnerNeedsText = partnerNeedsView.getText().toString() + getPartnerNeeds();
+        String partnerNeedsText = partnerNeedsView.getText().toString() + " " + getPartnerNeeds();
         partnerNeedsView.setText(partnerNeedsText);
+
+        //Get the partner's mood from Shared preferences and display them
+        String partnerMoodText = partnerMoodView.getText().toString() + " " +  getPartnerMood();
+        partnerMoodView.setText(partnerMoodText);
 
         //Display the user's token
         userTokenView.setText(getUserToken());
@@ -83,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
     //Get partner's needs text from shared preferences
     private String getPartnerNeeds() {
         return sharedPreferences.getString("partnerNeeds", "");
+    }
+
+    private String getPartnerMood() {
+        return sharedPreferences.getString("partnerMood", "");
     }
 
     //Copies the given String into the device's clipboard
