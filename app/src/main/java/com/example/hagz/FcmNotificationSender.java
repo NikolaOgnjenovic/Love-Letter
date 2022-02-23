@@ -1,35 +1,29 @@
 package com.example.hagz;
 
 import android.app.Activity;
-import android.content.Context;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class FcmNotificationSender {
 
-    String userFcmToken;
-    Context mContext;
-    Activity mActivity;
+    private final String userFcmToken;
+    private final Activity mActivity;
 
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     private final String fcmServerKey = "AAAA4oeYbBg:APA91bF1WFXLV7NsQO8HB2IYpRk37DJ6SzzhNVoi0oMhj4pqSAGTQI65L44UL66uLjiFweW1Nf2PfJ4FHGP_vlkyueguaKaO611ob3x73aPR_0Pzt8AuyZj0h9BDh1-fn7Z19-9F55ik";
 
-    String userMood, userNeeds;
+    private final String userMood, userNeeds;
 
-    public FcmNotificationSender(String userFcmToken, String userMood, String userNeeds, Context context, Activity activity) {
+    public FcmNotificationSender(String userFcmToken, String userMood, String userNeeds, Activity activity) {
         this.userFcmToken = userFcmToken;
         this.userMood = userMood;
         this.userNeeds = userNeeds;
-        this.mContext = context;
         this.mActivity = activity;
     }
 

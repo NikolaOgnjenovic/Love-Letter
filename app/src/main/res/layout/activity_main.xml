@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_secondary"
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:padding="20sp">
@@ -45,14 +44,14 @@
         android:id="@+id/sendAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="send to all users"
+        android:text="@string/send_to_all"
         android:textSize="14sp"/>
 
     <Button
         android:id="@+id/sendToPartner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="send to user with token"
+        android:text="@string/send_to_partner"
         android:textSize="14sp"/>
 
     <TextView

@@ -1,7 +1,6 @@
 package com.example.hagz;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -71,7 +70,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         Intent resultIntent = new Intent(this, MainActivity.class);
         @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        builder.setContentTitle("Hagz");
+        builder.setContentTitle(getString(R.string.app_name));
         builder.setContentText("Your partner wants you to know that their mood has changed!");
         builder.setStyle(new NotificationCompat.DecoratedCustomViewStyle());
         builder.setContentIntent(pendingIntent);

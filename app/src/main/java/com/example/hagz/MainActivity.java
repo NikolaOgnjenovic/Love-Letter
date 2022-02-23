@@ -4,6 +4,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -55,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
         getUserToken.setOnClickListener(v -> userTokenView.setText(getUserToken()));
 
         userTokenView.setOnClickListener(v -> copyText(userTokenView.getText().toString()));
+
+        partnerToken.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                savePartnerToken();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
     }
 
     private void initialiseObjects() {
@@ -65,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
 
         updatePartnerViews();
         updateUserViews();
+
         //Display the user's token
         userTokenView.setText(getUserToken());
+
+        //Display the partner's token
+        partnerToken.setText(getPartnerToken());
     }
 
     //Get the user's token
@@ -77,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendNotificationToUserWithToken(String token) {
-        FcmNotificationSender notificationSender = new FcmNotificationSender(token, userMoodInput.getText().toString(), userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
+        FcmNotificationSender notificationSender = new FcmNotificationSender(token, userMoodInput.getText().toString(), userNeedsInput.getText().toString(), this);
         notificationSender.sendNotification();
         saveUserMood();
         saveUserNeeds();
@@ -122,17 +140,27 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, getString(R.string.copied_user_token), Toast.LENGTH_SHORT).show(); //Notify the user that the text was copied to the clipboard
     }
 
+    //Get the user's mood and needs from Shared preferences and display them
     private void updateUserViews() {
-        //Get the user's mood and needs from Shared preferences and display them
         String userMoodText = getString(R.string.user_mood) + " " + getUserMood(), userNeedsText = getString(R.string.user_needs) + " " + getUserNeeds();
         userMoodView.setText(userMoodText);
         userNeedsView.setText(userNeedsText);
     }
 
+    //Get the partner's mood and needs from Shared preferences and display them
     private void updatePartnerViews() {
-        //Get the partner's mood and needs from Shared preferences and display them
         String partnerMoodText = getString(R.string.partner_mood) + " " + getPartnerMood(), partnerNeedsText = getString(R.string.partner_needs) + " " + getPartnerNeeds();
         partnerMoodView.setText(partnerMoodText);
         partnerNeedsView.setText(partnerNeedsText);
+    }
+
+    //Save the partner's token using Shared preferences
+    private void savePartnerToken() {
+        sharedPreferences.edit().putString("partnerToken", partnerToken.getText().toString()).apply();
+    }
+
+    //Get partner's token from Shared preferences
+    private String getPartnerToken() {
+        return sharedPreferences.getString("partnerToken", "");
     }
 }

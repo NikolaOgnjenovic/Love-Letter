@@ -3,8 +3,8 @@
     android:id="@+id/view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_secondary"
     android:orientation="vertical"
+    android:background="@color/theme_secondary"
     android:padding="10sp">
 
     <LinearLayout
