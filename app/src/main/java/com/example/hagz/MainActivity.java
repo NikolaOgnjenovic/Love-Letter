@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userNeedsInput, partnerToken, userMoodInput;
     private Button sendAll, sendToPartner, getUserToken;
-    private TextView partnerNeedsView, userTokenView, partnerMoodView;
+    private TextView partnerMoodView, partnerNeedsView, userTokenView, userMoodView, userNeedsView;
     private String userToken;
     private SharedPreferences sharedPreferences;
 
@@ -41,20 +41,16 @@ public class MainActivity extends AppCompatActivity {
         getUserToken = findViewById(R.id.getUserToken);
         userMoodInput = findViewById(R.id.userMoodInput);
         partnerMoodView = findViewById(R.id.partnerMoodView);
+        userMoodView = findViewById(R.id.userMoodView);
+        userNeedsView = findViewById(R.id.userNeedsView);
     }
 
     private void initialiseListeners() {
         //Send a notification to all users (temp)
-        sendAll.setOnClickListener(v -> {
-            FcmNotificationSender notificationSender = new FcmNotificationSender("/topics/all", userMoodInput.getText().toString(), userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
-            notificationSender.SendNotifications();
-        });
+        sendAll.setOnClickListener(v -> sendNotificationToUserWithToken("/topics/all"));
 
         //Send a notification to the user with the partnerToken token
-        sendToPartner.setOnClickListener(v -> {
-            FcmNotificationSender notificationSender = new FcmNotificationSender(partnerToken.getText().toString(), userMoodInput.getText().toString(), userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
-            notificationSender.SendNotifications();
-        });
+        sendToPartner.setOnClickListener(v -> sendNotificationToUserWithToken(partnerToken.getText().toString()));
 
         getUserToken.setOnClickListener(v -> userTokenView.setText(getUserToken()));
 
@@ -67,14 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("SharedPreferences", MODE_PRIVATE);
 
-        //Get partner's needs from Shared preferences and display them
-        String partnerNeedsText = partnerNeedsView.getText().toString() + " " + getPartnerNeeds();
-        partnerNeedsView.setText(partnerNeedsText);
-
-        //Get the partner's mood from Shared preferences and display them
-        String partnerMoodText = partnerMoodView.getText().toString() + " " +  getPartnerMood();
-        partnerMoodView.setText(partnerMoodText);
-
+        updatePartnerViews();
+        updateUserViews();
         //Display the user's token
         userTokenView.setText(getUserToken());
     }
@@ -86,20 +76,63 @@ public class MainActivity extends AppCompatActivity {
         return userToken;
     }
 
-    //Get partner's needs text from shared preferences
-    private String getPartnerNeeds() {
-        return sharedPreferences.getString("partnerNeeds", "");
+    private void sendNotificationToUserWithToken(String token) {
+        FcmNotificationSender notificationSender = new FcmNotificationSender(token, userMoodInput.getText().toString(), userNeedsInput.getText().toString(), getApplicationContext(), MainActivity.this);
+        notificationSender.sendNotification();
+        saveUserMood();
+        saveUserNeeds();
+        updateUserViews();
     }
 
+    //Get partner's mood text from Shared preferences
     private String getPartnerMood() {
         return sharedPreferences.getString("partnerMood", "");
     }
 
+    //Get partner's needs text from Shared preferences
+    private String getPartnerNeeds() {
+        return sharedPreferences.getString("partnerNeeds", "");
+    }
+
+    //Save the user's mood using Shared preferences
+    private void saveUserMood() {
+        sharedPreferences.edit().putString("userMood", userMoodInput.getText().toString()).apply();
+    }
+
+    //Save the user's needs using Shared preferences
+    private void saveUserNeeds() {
+        sharedPreferences.edit().putString("userNeeds", userNeedsInput.getText().toString()).apply();
+    }
+
+    //Get user's mood text from Shared preferences
+    private String getUserMood() {
+        return sharedPreferences.getString("userMood", "");
+    }
+
+    //Get user's needs text from Shared preferences
+    private String getUserNeeds() {
+        return sharedPreferences.getString("userNeeds", "");
+    }
+
     //Copies the given String into the device's clipboard
     private void copyText(String text) {
-        ClipboardManager myClipboard = (ClipboardManager)  getSystemService(CLIPBOARD_SERVICE); //Get the clipboard service
+        ClipboardManager myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE); //Get the clipboard service
         ClipData myClip = ClipData.newPlainText("text", text); //Put the given text into the clip
         myClipboard.setPrimaryClip(myClip); //Put the clip into the clipboard
         Toast.makeText(this, getString(R.string.copied_user_token), Toast.LENGTH_SHORT).show(); //Notify the user that the text was copied to the clipboard
+    }
+
+    private void updateUserViews() {
+        //Get the user's mood and needs from Shared preferences and display them
+        String userMoodText = getString(R.string.user_mood) + " " + getUserMood(), userNeedsText = getString(R.string.user_needs) + " " + getUserNeeds();
+        userMoodView.setText(userMoodText);
+        userNeedsView.setText(userNeedsText);
+    }
+
+    private void updatePartnerViews() {
+        //Get the partner's mood and needs from Shared preferences and display them
+        String partnerMoodText = getString(R.string.partner_mood) + " " + getPartnerMood(), partnerNeedsText = getString(R.string.partner_needs) + " " + getPartnerNeeds();
+        partnerMoodView.setText(partnerMoodText);
+        partnerNeedsView.setText(partnerNeedsText);
     }
 }

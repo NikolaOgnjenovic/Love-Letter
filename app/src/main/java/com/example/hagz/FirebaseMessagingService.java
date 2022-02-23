@@ -1,6 +1,7 @@
 package com.example.hagz;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -36,14 +37,11 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         updateWidget();
     }
 
+    //Save partner's needs and mood (the content of the received notification) in shared preferences
     private void savePartnerValues(RemoteMessage remoteMessage) {
-        //Save partner's needs and mood (the content of the received notification) in shared preferences
         SharedPreferences.Editor sharedPreferencesEditor = getSharedPreferences("SharedPreferences", MODE_PRIVATE).edit();
-        //sharedPreferencesEditor.putString("partnerMood", Objects.requireNonNull(remoteMessage.getNotification()).getTitle()).apply();
-        //sharedPreferencesEditor.putString("partnerNeeds", Objects.requireNonNull(remoteMessage.getNotification()).getBody()).apply();
         sharedPreferencesEditor.putString("partnerMood", Objects.requireNonNull(remoteMessage.getData()).get("userMood")).apply();
         sharedPreferencesEditor.putString("partnerNeeds", Objects.requireNonNull(remoteMessage.getData()).get("userNeeds")).apply();
-
     }
 
     private void getNotificationManager() {
