@@ -1,4 +1,4 @@
-package com.example.hagz;
+package com.mrmi.loveletter;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package com.example.hagz;
+package com.mrmi.loveletter;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.hagz", appContext.getPackageName());
+        assertEquals("com.mrmi.hagz", appContext.getPackageName());
     }
 }

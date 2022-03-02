@@ -32,6 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints=""
+            android:background="@color/theme_primary"
+            android:textColor="@color/white"
             android:hint="@string/user_needs_input_hint"
             android:inputType="text"
             android:textSize="14sp" />
@@ -50,14 +52,9 @@
             android:autofillHints=""
             android:hint="@string/user_mood_input_hint"
             android:inputType="text"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/sendAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send_to_all"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:background="@color/theme_primary"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/sendToPartner"
@@ -87,7 +84,9 @@
             android:autofillHints=""
             android:hint="@string/partners_token"
             android:inputType="text"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:background="@color/theme_primary"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/getUserToken"

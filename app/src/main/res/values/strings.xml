@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hagz</string>
+    <string name="app_name">Love Letter</string>
     <string name="partner_needs">Your partner needs:</string>
     <string name="user_needs">I need:</string>
     <string name="user_needs_input_hint">Tell your partner what you need</string>
@@ -9,7 +9,6 @@
     <string name="partner_mood">Your partner is:</string>
     <string name="user_mood">My mood:</string>
     <string name="user_mood_input_hint">Tell your partner your mood</string>
-    <string name="send_to_all">Send to all users</string>
     <string name="send_to_partner">Send to partner</string>
     <string name="help">Help</string>
 </resources>

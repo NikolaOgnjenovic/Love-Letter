@@ -1,4 +1,4 @@
-package com.example.hagz;
+package com.mrmi.loveletter;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -19,9 +19,9 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText userNeedsInput, partnerToken, userMoodInput;
-    private Button sendAll, sendToPartner, getUserToken;
-    private TextView partnerMoodView, partnerNeedsView, userTokenView, userMoodView, userNeedsView;
+    private EditText userMoodInput, userNeedsInput, partnerToken;
+    private Button sendToPartner, getUserToken;
+    private TextView partnerMoodView, partnerNeedsView, userTokenView;
     private String userToken;
     private SharedPreferences sharedPreferences;
     private ImageButton helpButton;
@@ -49,21 +49,15 @@ public class MainActivity extends AppCompatActivity {
         userNeedsInput = findViewById(R.id.userNeedsInput);
         partnerNeedsView = findViewById(R.id.partnerNeedsView);
         partnerToken = findViewById(R.id.partnerToken);
-        sendAll = findViewById(R.id.sendAll);
         sendToPartner = findViewById(R.id.sendToPartner);
         userTokenView = findViewById(R.id.userToken);
         getUserToken = findViewById(R.id.getUserToken);
         userMoodInput = findViewById(R.id.userMoodInput);
         partnerMoodView = findViewById(R.id.partnerMoodView);
-        userMoodView = findViewById(R.id.userMoodView);
-        userNeedsView = findViewById(R.id.userNeedsView);
         helpButton = findViewById(R.id.helpButton);
     }
 
     private void initialiseListeners() {
-        //Send a notification to all users (temp)
-        sendAll.setOnClickListener(v -> sendNotificationToUserWithToken("/topics/all"));
-
         //Send a notification to the user with the partnerToken token
         sendToPartner.setOnClickListener(v -> sendNotificationToUserWithToken(partnerToken.getText().toString()));
 
@@ -158,9 +152,9 @@ public class MainActivity extends AppCompatActivity {
 
     //Get the user's mood and needs from Shared preferences and display them
     private void updateUserViews() {
-        String userMoodText = getString(R.string.user_mood) + " " + getUserMood(), userNeedsText = getString(R.string.user_needs) + " " + getUserNeeds();
-        userMoodView.setText(userMoodText);
-        userNeedsView.setText(userNeedsText);
+        String userMoodText = getUserMood(), userNeedsText = getUserNeeds();
+        userMoodInput.setText(userMoodText);
+        userNeedsInput.setText(userNeedsText);
     }
 
     //Get the partner's mood and needs from Shared preferences and display them

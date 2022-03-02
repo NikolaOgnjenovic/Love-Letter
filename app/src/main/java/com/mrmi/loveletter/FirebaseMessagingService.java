@@ -1,4 +1,4 @@
-package com.example.hagz;
+package com.mrmi.loveletter;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -23,7 +23,7 @@ import java.util.Objects;
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
     private NotificationManager notificationManager;
-    private final String channelId = "HagzNotifications";
+    private final String channelId = "LoveLetterNotifications";
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
@@ -50,8 +50,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     //Create notification channel, used in Android versions above 8
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String name = "Hagz"; //Channel name
-            String description = "Hagz notification channel"; //Channel description
+            String name = "LoveLetter"; //Channel name
+            String description = "LoveLetter notification channel"; //Channel description
             int importance = NotificationManager.IMPORTANCE_HIGH; //Channel importance
             NotificationChannel channel = new NotificationChannel(channelId, name, importance);
             channel.setDescription(description);

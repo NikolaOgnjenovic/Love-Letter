@@ -1,4 +1,4 @@
-package com.example.hagz;
+package com.mrmi.loveletter;
 
 import org.junit.Test;
 
