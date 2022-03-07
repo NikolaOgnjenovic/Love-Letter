@@ -34,6 +34,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         createNotificationChannel();
         notifyUser();
         updateWidget();
+        History.addToHistory(remoteMessage.getData().get("userMood"), remoteMessage.getData().get("userNeeds"), this);
     }
 
     //Save partner's needs and mood (the content of the received notification) in shared preferences

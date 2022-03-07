@@ -20,7 +20,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 public class MainActivity extends AppCompatActivity {
 
     private EditText userMoodInput, userNeedsInput, partnerToken;
-    private Button sendToPartner, getUserToken;
+    private ImageButton sendToPartner;
+    private Button getUserToken;
     private TextView partnerMoodView, partnerNeedsView, userTokenView;
     private String userToken;
     private SharedPreferences sharedPreferences;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Open help activity on help button click
-        helpButton.setOnClickListener(v-> startActivity(new Intent(this, Help.class)));
+        helpButton.setOnClickListener(v -> startActivity(new Intent(this, Help.class)));
     }
 
     private void initialiseObjects() {

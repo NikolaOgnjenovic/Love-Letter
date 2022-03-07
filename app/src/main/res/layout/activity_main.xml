@@ -1,106 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/helpButton"
+        android:layout_width="64dp"
+        android:layout_height="44dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/help"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_info_details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userNeedsView"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20sp"
-        tools:context=".MainActivity">
+        android:layout_marginTop="45dp"
+        android:text="@string/user_needs"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helpButton" />
 
-        <ImageButton
-            android:id="@+id/helpButton"
-            android:layout_width="64sp"
-            android:layout_height="64sp"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_menu_info_details"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/help" />
-        <TextView
-            android:id="@+id/userNeedsView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/user_needs"
-            android:textSize="14sp" />
+    <EditText
+        android:id="@+id/userNeedsInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@color/theme_primary"
+        android:hint="@string/user_needs_input_hint"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/userNeedsView"
+        app:layout_constraintTop_toTopOf="@+id/userNeedsView" />
 
-        <EditText
-            android:id="@+id/userNeedsInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:background="@color/theme_primary"
-            android:textColor="@color/white"
-            android:hint="@string/user_needs_input_hint"
-            android:inputType="text"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/userMoodView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_mood"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNeedsView" />
 
-        <TextView
-            android:id="@+id/userMoodView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/user_mood"
-            android:textSize="14sp" />
+    <EditText
+        android:id="@+id/userMoodInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@color/theme_primary"
+        android:hint="@string/user_mood_input_hint"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/userMoodView"
+        app:layout_constraintTop_toBottomOf="@+id/userNeedsView" />
 
-        <EditText
-            android:id="@+id/userMoodInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:hint="@string/user_mood_input_hint"
-            android:inputType="text"
-            android:textSize="14sp"
-            android:background="@color/theme_primary"
-            android:textColor="@color/white"/>
+    <ImageButton
+        android:id="@+id/sendToPartner"
+        android:layout_width="64dp"
+        android:layout_height="44dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/help"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userMoodView" />
 
-        <Button
-            android:id="@+id/sendToPartner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send_to_partner"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/partnerNeedsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/partner_needs"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendToPartner" />
 
-        <TextView
-            android:id="@+id/partnerNeedsView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/partner_needs"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/partnerMoodView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/partner_mood"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partnerNeedsView" />
 
-        <TextView
-            android:id="@+id/partnerMoodView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/partner_mood"
-            android:textSize="14sp" />
+    <EditText
+        android:id="@+id/partnerToken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:autofillHints=""
+        android:background="@color/theme_primary"
+        android:hint="@string/partners_token"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partnerMoodView" />
 
-        <EditText
-            android:id="@+id/partnerToken"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:hint="@string/partners_token"
-            android:inputType="text"
-            android:textSize="14sp"
-            android:background="@color/theme_primary"
-            android:textColor="@color/white"/>
+    <Button
+        android:id="@+id/getUserToken"
+        android:layout_width="371dp"
+        android:layout_height="wrap_content"
+        android:text="@string/get_user_token"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partnerToken" />
 
-        <Button
-            android:id="@+id/getUserToken"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/get_user_token"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/userToken"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:drawableRightCompat="?attr/actionModeCopyDrawable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getUserToken" />
 
-        <TextView
-            android:id="@+id/userToken"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            app:drawableRightCompat="?attr/actionModeCopyDrawable" />
-
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

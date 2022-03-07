@@ -1,16 +1,17 @@
 package com.mrmi.loveletter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.LayoutTransition;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Help extends AppCompatActivity {
@@ -18,6 +19,8 @@ public class Help extends AppCompatActivity {
     private ImageButton backButton;
     private LinearLayout[] helpGroups;
     private TextView[] helpDetails;
+    private TextView historyView;
+    private Button deleteHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +44,27 @@ public class Help extends AppCompatActivity {
         helpDetails = new TextView[]{findViewById(R.id.help1Details), findViewById(R.id.help2Details)};
 
         //Enable animations for all help groups
-        for(LinearLayout helpGroup : helpGroups) {
+        for (LinearLayout helpGroup : helpGroups) {
             helpGroup.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         }
+
+        historyView = findViewById(R.id.history);
+        deleteHistory = findViewById(R.id.delete_history);
     }
 
     private void initialiseListeners() {
         backButton.setOnClickListener(v -> goToMainActivity());
 
         //Loop through all help groups and set their listener - toggle the visibility of the specific group's details on click
-        for(int i = 0; i < helpGroups.length; ++i) {
+        for (int i = 0; i < helpGroups.length; ++i) {
             int finalI = i;
             helpGroups[i].setOnClickListener(v -> toggleHelpDetails(helpGroups[finalI], helpDetails[finalI]));
         }
+
+        String history = History.getHistory(this);
+        historyView.setText(history);
+
+        deleteHistory.setOnClickListener(v -> History.deleteHistory(this));
     }
 
     //Shows or hides the details of the given help group's details
@@ -67,5 +78,4 @@ public class Help extends AppCompatActivity {
     private void goToMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
     }
-
 }

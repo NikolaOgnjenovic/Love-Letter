@@ -103,7 +103,29 @@
 
             </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_primary"
+                android:text="@string/history"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/delete_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_history"
+                android:textAllCaps="false"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_primary"
+                android:textSize="30sp" />
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>
