@@ -64,6 +64,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
     }
 
+    //Set notification properties and notify the user
     private void notifyUser() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID");
         builder.setSmallIcon(android.R.drawable.btn_star);

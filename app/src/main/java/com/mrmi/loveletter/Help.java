@@ -1,6 +1,7 @@
 package com.mrmi.loveletter;
 
 import android.animation.LayoutTransition;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -12,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class Help extends AppCompatActivity {
 
@@ -64,7 +64,10 @@ public class Help extends AppCompatActivity {
         String history = History.getHistory(this);
         historyView.setText(history);
 
-        deleteHistory.setOnClickListener(v -> History.deleteHistory(this));
+        deleteHistory.setOnClickListener(v -> {
+            History.deleteHistory(this);
+            recreate();
+        });
     }
 
     //Shows or hides the details of the given help group's details

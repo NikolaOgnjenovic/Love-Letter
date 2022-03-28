@@ -5,6 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20sp"
     tools:context=".MainActivity">
 
     <ImageButton
@@ -19,6 +20,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/titleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helpButton" />
+
+    <TextView
         android:id="@+id/userNeedsView"
         android:layout_width="64dp"
         android:layout_height="wrap_content"
@@ -26,7 +37,7 @@
         android:text="@string/user_needs"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpButton" />
+        app:layout_constraintTop_toBottomOf="@+id/titleView" />
 
     <EditText
         android:id="@+id/userNeedsInput"
@@ -38,7 +49,7 @@
         android:inputType="text"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/userNeedsView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/userNeedsView" />
 
     <TextView
@@ -60,7 +71,7 @@
         android:inputType="text"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/userMoodView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNeedsView" />
 
     <ImageButton
@@ -79,6 +90,7 @@
         android:id="@+id/partnerNeedsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
         android:text="@string/partner_needs"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,36 +105,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/partnerNeedsView" />
 
+    <TextView
+        android:id="@+id/partnerTokenView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/partner_token_view"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/partnerToken"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/partnerToken" />
+
     <EditText
         android:id="@+id/partnerToken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginBottom="112dp"
         android:autofillHints=""
         android:background="@color/theme_primary"
         android:hint="@string/partners_token"
         android:inputType="text"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/partnerMoodView" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/partnerTokenView" />
 
     <Button
-        android:id="@+id/getUserToken"
-        android:layout_width="371dp"
+        android:id="@+id/copyUserToken"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/get_user_token"
+        android:text="@string/copy_your_token"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/partnerToken" />
-
-    <TextView
-        android:id="@+id/userToken"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        app:drawableRightCompat="?attr/actionModeCopyDrawable"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getUserToken" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

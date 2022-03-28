@@ -55,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
-                        android:text="@string/help"
+                        android:text="@string/help_1_title"
                         android:textSize="20sp" />
 
                     <TextView
@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
-                        android:text="@string/send_to_partner"
+                        android:text="@string/help_1"
                         android:textSize="40sp" />
                 </LinearLayout>
 
@@ -89,7 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
-                        android:text="@string/help"
+                        android:text="@string/help_2_title"
                         android:textSize="20sp" />
 
                     <TextView
@@ -97,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
-                        android:text="@string/send_to_partner"
+                        android:text="@string/help_2"
                         android:textSize="40sp" />
                 </LinearLayout>
 

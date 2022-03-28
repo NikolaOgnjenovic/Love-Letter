@@ -21,11 +21,14 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userMoodInput, userNeedsInput, partnerToken;
     private ImageButton sendToPartner;
-    private Button getUserToken;
-    private TextView partnerMoodView, partnerNeedsView, userTokenView;
-    private String userToken;
+    private TextView partnerMoodView, partnerNeedsView;
+    private String userToken = "";
     private SharedPreferences sharedPreferences;
     private ImageButton helpButton;
+
+    private Button copyUserToken;
+
+    public static boolean activityIsVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         initialiseViews();
         initialiseListeners();
         initialiseObjects();
+
+        getUserToken(true);
     }
 
     //Quit the app when the user presses the back button
@@ -46,26 +51,37 @@ public class MainActivity extends AppCompatActivity {
         startActivity(quitIntent);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        activityIsVisible = true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        activityIsVisible = false;
+    }
+
     private void initialiseViews() {
         userNeedsInput = findViewById(R.id.userNeedsInput);
         partnerNeedsView = findViewById(R.id.partnerNeedsView);
         partnerToken = findViewById(R.id.partnerToken);
         sendToPartner = findViewById(R.id.sendToPartner);
-        userTokenView = findViewById(R.id.userToken);
-        getUserToken = findViewById(R.id.getUserToken);
         userMoodInput = findViewById(R.id.userMoodInput);
         partnerMoodView = findViewById(R.id.partnerMoodView);
         helpButton = findViewById(R.id.helpButton);
+        copyUserToken = findViewById(R.id.copyUserToken);
     }
 
     private void initialiseListeners() {
         //Send a notification to the user with the partnerToken token
         sendToPartner.setOnClickListener(v -> sendNotificationToUserWithToken(partnerToken.getText().toString()));
 
-        getUserToken.setOnClickListener(v -> userTokenView.setText(getUserToken()));
+        //Copy the user's token to the clipboard
+        copyUserToken.setOnClickListener(v -> copyText(getUserToken(false)));
 
-        userTokenView.setOnClickListener(v -> copyText(userTokenView.getText().toString()));
-
+        //Save partner's token when the user changes it
         partnerToken.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 savePartnerToken();
@@ -91,17 +107,18 @@ public class MainActivity extends AppCompatActivity {
         updatePartnerViews();
         updateUserViews();
 
-        //Display the user's token
-        userTokenView.setText(getUserToken());
-
         //Display the partner's token
         partnerToken.setText(getPartnerToken());
     }
 
     //Get the user's token
-    private String getUserToken() {
+    private String getUserToken(boolean calledFromOnCreate) {
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> userToken = task.getResult());
         System.out.println("[MRMI]: User's token: " + userToken);
+
+        if(calledFromOnCreate && userToken.equals("")) {
+            Toast.makeText(this, getString(R.string.copy_again_toast), Toast.LENGTH_SHORT).show();
+        }
         return userToken;
     }
 
