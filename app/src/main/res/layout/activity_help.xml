@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/help"
-                android:textSize="30sp" />
+                android:textSize="80sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
                         android:text="@string/help_1_title"
-                        android:textSize="20sp" />
+                        android:textSize="34sp" />
 
                     <TextView
                         android:id="@+id/help1Details"
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
                         android:text="@string/help_1"
-                        android:textSize="40sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
                         android:text="@string/help_2_title"
-                        android:textSize="20sp" />
+                        android:textSize="34sp" />
 
                     <TextView
                         android:id="@+id/help2Details"
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/theme_primary"
                         android:text="@string/help_2"
-                        android:textSize="40sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -108,7 +108,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/theme_primary"
                 android:text="@string/history"
-                android:textSize="30sp" />
+                android:gravity="center"
+                android:textSize="40sp" />
 
             <Button
                 android:id="@+id/delete_history"
@@ -116,14 +117,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/delete_history"
                 android:textAllCaps="false"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/theme_primary"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
     </ScrollView>

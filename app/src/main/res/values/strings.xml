@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Love Letter</string>
     <string name="partner_needs">Your partner needs:</string>
-    <string name="user_needs">I need:</string>
+    <string name="user_needs">I need: </string>
     <string name="user_needs_input_hint">Tell your partner what you need</string>
     <string name="partners_token">Enter your partner\'s token</string>
     <string name="copied_user_token">Copied user token</string>
     <string name="partner_mood">Your partner is:</string>
-    <string name="user_mood">My mood:</string>
+    <string name="user_mood">My mood: </string>
     <string name="user_mood_input_hint">Tell your partner your mood</string>
     <string name="help">Help</string>
     <string name="history">History</string>

@@ -1,7 +1,6 @@
 package com.mrmi.loveletter;
 
 import android.animation.LayoutTransition;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;

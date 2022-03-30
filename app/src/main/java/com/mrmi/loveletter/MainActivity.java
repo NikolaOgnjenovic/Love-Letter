@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button copyUserToken;
 
-    public static boolean activityIsVisible;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,18 +47,6 @@ public class MainActivity extends AppCompatActivity {
         quitIntent.addCategory(Intent.CATEGORY_HOME);
         quitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(quitIntent);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        activityIsVisible = true;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        activityIsVisible = false;
     }
 
     private void initialiseViews() {
@@ -177,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Get the partner's mood and needs from Shared preferences and display them
     private void updatePartnerViews() {
-        String partnerMoodText = getString(R.string.partner_mood) + " " + getPartnerMood(), partnerNeedsText = getString(R.string.partner_needs) + " " + getPartnerNeeds();
+        String partnerMoodText = getPartnerMood(), partnerNeedsText = getPartnerNeeds();
         partnerMoodView.setText(partnerMoodText);
         partnerNeedsView.setText(partnerNeedsText);
     }

@@ -14,5 +14,16 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@color/theme_secondary</item>
+
+        <item name="android:textViewStyle">@style/FontTextViewStyle</item>
+        <item name="android:buttonStyle">@style/FontButtonStyle</item>
+    </style>
+
+    <style name="FontTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/dongle_bold</item>
+    </style>
+
+    <style name="FontButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/dongle_bold</item>
     </style>
 </resources>
