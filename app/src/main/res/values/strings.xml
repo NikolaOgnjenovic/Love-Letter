@@ -12,10 +12,11 @@
     <string name="history">History</string>
     <string name="delete_history">Delete history</string>
     <string name="help_1_title">How do I connect to my partner?</string>
-    <string name="help_1">Input your partner\'s id which they can send you via another app into the partner\'s id field.</string>
+    <string name="help_1">Input your partner\'s token (which they can send you via another app) into the partner\'s token field.</string>
     <string name="help_2_title">How do I add the widget to my home screen?</string>
     <string name="help_2">Long press on your home screen and click on "Widgets". Find Love Letter in the widget list and drag it onto your home screen. You can resize it as you like.</string>
     <string name="partner_token_view">Your partner\'s token:</string>
     <string name="copy_your_token">Copy your token</string>
-    <string name="copy_again_toast">Your id failed to generate. Please try copying it again.</string>
+    <string name="copy_again_toast">Your token failed to generate. Please try copying it again.</string>
+    <string name="notification_text">Your partner has sent you a letter!</string>
 </resources>

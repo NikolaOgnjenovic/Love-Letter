@@ -102,8 +102,14 @@ public class MainActivity extends AppCompatActivity {
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> userToken = task.getResult());
         System.out.println("[MRMI]: User's token: " + userToken);
 
-        if(calledFromOnCreate && userToken.equals("")) {
-            Toast.makeText(this, getString(R.string.copy_again_toast), Toast.LENGTH_SHORT).show();
+        if(!calledFromOnCreate && userToken.equals("")) {
+            Toast toast = Toast.makeText(this, getString(R.string.copy_again_toast), Toast.LENGTH_SHORT);
+            TextView textView = toast.getView().findViewById(android.R.id.message);
+            textView.setTextColor(getResources().getColor(R.color.theme_primary));
+            textView.setBackgroundColor(getResources().getColor(R.color.white));
+            textView.setTextSize(20);
+            toast.getView().setBackgroundColor(getResources().getColor(R.color.white));
+            toast.show();
         }
         return userToken;
     }

@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5sp"
+    android:padding="5dp"
     tools:context=".MainActivity">
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="48sp"
-        android:layout_height="48sp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/help"
         android:scaleType="fitCenter"
@@ -28,7 +28,6 @@
             tools:context=".MainActivity">
 
             <TextView
-                android:id="@+id/userNeedsView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -38,31 +37,33 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:background="@color/theme_primary"
-                app:cardCornerRadius="20sp"
-                app:contentPadding="20sp">
+                android:layout_margin="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:contentPadding="20dp">
 
                 <LinearLayout
                     android:id="@+id/help1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:animateLayoutChanges="true"
-                    android:background="@color/theme_primary"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <TextView
+                        android:background="@color/white"
+                        android:textColor="@color/theme_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/theme_primary"
                         android:text="@string/help_1_title"
                         android:textSize="34sp" />
 
                     <TextView
+                        android:background="@color/white"
+                        android:textColor="@color/theme_primary"
                         android:id="@+id/help1Details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/theme_primary"
                         android:text="@string/help_1"
                         android:textSize="24sp" />
                 </LinearLayout>
@@ -72,10 +73,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20sp"
+                android:layout_margin="20dp"
                 android:background="@color/theme_primary"
-                app:cardCornerRadius="20sp"
-                app:contentPadding="20sp">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:contentPadding="20dp">
 
                 <LinearLayout
                     android:id="@+id/help2"
@@ -86,17 +88,19 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:background="@color/white"
+                        android:textColor="@color/theme_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/theme_primary"
                         android:text="@string/help_2_title"
                         android:textSize="34sp" />
 
                     <TextView
+                        android:background="@color/white"
+                        android:textColor="@color/theme_primary"
                         android:id="@+id/help2Details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/theme_primary"
                         android:text="@string/help_2"
                         android:textSize="24sp" />
                 </LinearLayout>
@@ -113,18 +117,20 @@
 
             <Button
                 android:id="@+id/delete_history"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delete_history"
+                android:layout_gravity="center"
                 android:textAllCaps="false"
                 android:textSize="20sp" />
 
             <TextView
+                android:paddingTop="30dp"
                 android:id="@+id/history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/theme_primary"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 
     </ScrollView>
