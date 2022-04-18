@@ -29,7 +29,7 @@ public class History {
         Date currentDateTime = new Date();
         loadHistory(context);
         String newStatus = "[" + DateFormat.getDateTimeInstance().format(currentDateTime) + "]" + "\n" + "Your partner was feeling: " + partnerMood + "\n" + "Your partner needed: " + partnerNeeds + "\n" + "\n";
-        history += newStatus;
+        history  = newStatus + history;
         saveHistory(context);
     }
 

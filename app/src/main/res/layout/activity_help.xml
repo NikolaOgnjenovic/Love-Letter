@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5dp"
-    tools:context=".MainActivity">
+    android:background="@color/theme_primary"
+    android:padding="20dp"
+    tools:context=".MainActivity"
+    tools:ignore="Overdraw">
 
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_gravity="end"
         android:background="@android:color/transparent"
         android:contentDescription="@string/help"
         android:scaleType="fitCenter"
@@ -22,12 +25,14 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:background="@color/theme_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context=".MainActivity">
 
             <TextView
+                android:background="@color/theme_primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -37,10 +42,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="20dp"
-                app:contentPadding="20dp">
+                app:contentPadding="10dp">
 
                 <LinearLayout
                     android:id="@+id/help1"
@@ -56,7 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/help_1_title"
-                        android:textSize="34sp" />
+                        android:textSize="32sp" />
 
                     <TextView
                         android:background="@color/white"
@@ -73,11 +78,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:background="@color/theme_primary"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="20dp"
-                app:contentPadding="20dp">
+                app:contentPadding="10dp">
 
                 <LinearLayout
                     android:id="@+id/help2"
@@ -93,7 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/help_2_title"
-                        android:textSize="34sp" />
+                        android:textSize="32sp" />
 
                     <TextView
                         android:background="@color/white"
@@ -111,9 +116,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/theme_primary"
+                android:layout_marginTop="50dp"
                 android:text="@string/history"
                 android:gravity="center"
-                android:textSize="40sp" />
+                android:textSize="50sp" />
 
             <Button
                 android:id="@+id/delete_history"

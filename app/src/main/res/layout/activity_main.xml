@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
-    tools:context=".MainActivity">
+    android:background="@color/theme_primary"
+    android:padding="20dp"
+    tools:context=".MainActivity"
+    tools:ignore="Overdraw">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/theme_primary">
 
         <ImageButton
             android:id="@+id/helpButton"
-            android:layout_width="64dp"
-            android:layout_height="44dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/help"
             android:scaleType="fitCenter"
@@ -23,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:background="@color/theme_primary"
             android:id="@+id/titleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +37,7 @@
             app:layout_constraintTop_toBottomOf="@+id/helpButton" />
 
         <LinearLayout
+            android:background="@color/theme_primary"
             android:id="@+id/linear1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/titleView">
 
             <TextView
+                android:background="@color/theme_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_needs"
@@ -55,17 +61,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:autofillHints=""
-                android:background="@android:color/transparent"
                 android:fontFamily="@font/dongle_bold"
                 android:hint="@string/user_needs_input_hint"
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="34sp" />
+                android:textSize="26sp" />
         </LinearLayout>
 
-
         <LinearLayout
+            android:background="@color/theme_primary"
             android:id="@+id/linear2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,6 +80,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linear1">
 
             <TextView
+                android:background="@color/theme_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_mood"
@@ -87,13 +93,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:autofillHints=""
-                android:background="@android:color/transparent"
                 android:fontFamily="@font/dongle_bold"
                 android:hint="@string/user_mood_input_hint"
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="34sp" />
+                android:textSize="26sp" />
         </LinearLayout>
 
         <ImageButton
@@ -110,6 +115,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linear2" />
 
         <TextView
+            android:background="@color/theme_primary"
             android:id="@+id/partnerNeeds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,6 +128,7 @@
             app:layout_constraintTop_toBottomOf="@+id/sendToPartner" />
 
         <TextView
+            android:background="@color/theme_primary"
             android:id="@+id/partnerNeedsView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,6 +139,7 @@
             app:layout_constraintTop_toBottomOf="@+id/partnerNeeds" />
 
         <TextView
+            android:background="@color/theme_primary"
             android:id="@+id/partnerMood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,6 +152,7 @@
             app:layout_constraintTop_toBottomOf="@+id/partnerNeedsView" />
 
         <TextView
+            android:background="@color/theme_primary"
             android:id="@+id/partnerMoodView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -154,27 +163,25 @@
             app:layout_constraintTop_toBottomOf="@+id/partnerMood" />
 
         <TextView
+            android:layout_marginTop="100dp"
             android:id="@+id/partnerTokenView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
+            android:background="@color/theme_primary"
             android:text="@string/partner_token_view"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/partnerToken"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/partnerToken"
+            app:layout_constraintTop_toBottomOf="@+id/partnerMoodView"
             tools:ignore="RtlSymmetry" />
 
         <EditText
-            android:textCursorDrawable="@null"
             android:id="@+id/partnerToken"
-            android:layout_width="100dp"
+            android:textCursorDrawable="@null"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="20dp"
             android:autofillHints=""
-            android:background="@android:color/transparent"
             android:fontFamily="@font/dongle_bold"
             android:hint="@string/partners_token"
             android:inputType="text"
@@ -182,8 +189,8 @@
             android:textColorHint="@color/white"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/partnerTokenView"
-            app:layout_constraintTop_toBottomOf="@+id/partnerMoodView" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/partnerTokenView" />
 
         <Button
             android:id="@+id/copyUserToken"
