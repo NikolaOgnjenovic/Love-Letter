@@ -83,6 +83,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         builder.setAutoCancel(true);
         builder.setPriority(Notification.PRIORITY_MAX);
         builder.setChannelId(channelId);
+        builder.setSmallIcon(R.drawable.small_notification_icon);
         notificationManager.notify(100, builder.build());
     }
 
