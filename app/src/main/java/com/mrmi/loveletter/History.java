@@ -28,7 +28,7 @@ public class History {
     public static void addToHistory(String partnerMood, String partnerNeeds, Context context) {
         Date currentDateTime = new Date();
         loadHistory(context);
-        String newStatus = "[" + DateFormat.getDateTimeInstance().format(currentDateTime) + "]" + "\n" + "Your partner was feeling: " + partnerMood + "\n" + "Your partner needed: " + partnerNeeds + "\n" + "\n";
+        String newStatus = "[" + DateFormat.getDateTimeInstance().format(currentDateTime) + "]" + "\n" + "Your partner needed: " + partnerNeeds + "\n" + "Your partner was feeling: " + partnerMood + "\n" + "\n" ;
         history  = newStatus + history;
         saveHistory(context);
     }
