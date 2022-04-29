@@ -70,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/help_1"
-                        android:textSize="24sp" />
+                        android:textSize="28sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/help_2"
-                        android:textSize="24sp" />
+                        android:textSize="28sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -130,7 +130,7 @@
                 android:text="@string/delete_history"
                 android:layout_gravity="center"
                 android:textAllCaps="false"
-                android:textSize="30sp"
+                android:textSize="32sp"
                 android:padding="10dp"/>
 
             <TextView
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/theme_primary"
-                android:textSize="24sp" />
+                android:textSize="28sp" />
         </LinearLayout>
 
     </ScrollView>

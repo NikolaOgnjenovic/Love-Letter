@@ -58,6 +58,7 @@ public class Help extends AppCompatActivity {
         for (int i = 0; i < helpGroups.length; ++i) {
             int finalI = i;
             helpGroups[i].setOnClickListener(v -> toggleHelpDetails(helpGroups[finalI], helpDetails[finalI]));
+            toggleHelpDetails(helpGroups[i], helpDetails[i]);
         }
 
         String history = History.getHistory(this);

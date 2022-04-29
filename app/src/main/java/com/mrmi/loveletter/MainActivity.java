@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private ImageButton helpButton;
 
-    private ImageButton copyUserToken;
+    private ImageButton shareUserToken, clearPartnerToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         userMoodInput = findViewById(R.id.userMoodInput);
         partnerMoodView = findViewById(R.id.partnerMoodView);
         helpButton = findViewById(R.id.helpButton);
-        copyUserToken = findViewById(R.id.copyUserToken);
+        shareUserToken = findViewById(R.id.shareUserToken);
+        clearPartnerToken = findViewById(R.id.clearPartnerToken);
     }
 
     private void initialiseListeners() {
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         sendToPartner.setOnClickListener(v -> sendNotificationToUserWithToken(partnerTokenInput.getText().toString()));
 
         //Copy the user's token to the clipboard
-        copyUserToken.setOnClickListener(v -> {
+        shareUserToken.setOnClickListener(v -> {
             userToken = getUserToken(false);
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Open help activity on help button click
         helpButton.setOnClickListener(v -> startActivity(new Intent(this, Help.class)));
+
+        clearPartnerToken.setOnClickListener(v-> partnerTokenInput.setText(""));
     }
 
     private void initialiseObjects() {
@@ -220,7 +223,10 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
 
-        activity.findViewById(R.id.focusHolder).requestFocus();
+        //Hide the cursors from all edit texts
+        userMoodInput.setCursorVisible(false);
+        userNeedsInput.setCursorVisible(false);
+        partnerTokenInput.setCursorVisible(false);
     }
 
     //Hide keyboard when the user clicks outside of an edit text

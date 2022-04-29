@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="@string/partner_needs"
             android:textColor="@color/theme_secondary"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:maxLength="20"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/theme_secondary"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
     </LinearLayout>
 
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:text="@string/partner_mood"
             android:textColor="@color/theme_secondary"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:maxLength="20"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/theme_secondary"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </RelativeLayout>

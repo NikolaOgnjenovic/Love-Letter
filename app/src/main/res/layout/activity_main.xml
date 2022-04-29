@@ -51,17 +51,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleView">
 
             <TextView
+                android:layout_gravity="center"
                 android:background="@color/theme_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_needs"
-                android:textSize="28sp" />
+                android:textSize="32sp" />
 
             <EditText
                 android:focusableInTouchMode="true"
@@ -80,21 +81,23 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:background="@color/theme_primary"
             android:id="@+id/linear2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linear1">
 
             <TextView
+                android:layout_gravity="center"
                 android:background="@color/theme_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_mood"
-                android:textSize="28sp" />
+                android:textSize="32sp" />
 
             <EditText
                 android:focusableInTouchMode="true"
@@ -180,29 +183,46 @@
             android:layout_height="wrap_content"
             android:background="@color/theme_primary"
             android:text="@string/partner_token_view"
-            android:textSize="30sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/partnerMoodView"
             tools:ignore="RtlSymmetry" />
 
-        <EditText
-            android:focusableInTouchMode="true"
-            android:id="@+id/partnerTokenInput"
-            android:textCursorDrawable="@null"
+
+        <LinearLayout
+            android:id="@+id/tokenLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:fontFamily="@font/dongle_bold"
-            android:hint="@string/partners_token"
-            android:inputType="text"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerTokenInputView" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/partnerTokenInputView">
+
+            <ImageButton
+                android:id="@+id/clearPartnerToken"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/copy_your_token"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_menu_delete" />
+
+            <EditText
+                android:id="@+id/partnerTokenInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:focusableInTouchMode="true"
+                android:fontFamily="@font/dongle_bold"
+                android:hint="@string/partners_token"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="32sp" />
+        </LinearLayout>
 
         <ImageButton
             android:layout_width="48dp"
@@ -211,10 +231,10 @@
             android:contentDescription="@string/copy_your_token"
             android:scaleType="fitCenter"
             android:src="@android:drawable/ic_menu_share"
-            android:id="@+id/copyUserToken"
+            android:id="@+id/shareUserToken"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerTokenInput"/>
+            app:layout_constraintTop_toBottomOf="@id/tokenLayout"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
