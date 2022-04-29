@@ -122,13 +122,16 @@
                 android:textSize="50sp" />
 
             <Button
+                android:background="@drawable/rounded_button_white"
+                android:textColor="@color/theme_primary"
                 android:id="@+id/delete_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delete_history"
                 android:layout_gravity="center"
                 android:textAllCaps="false"
-                android:textSize="20sp" />
+                android:textSize="30sp"
+                android:padding="10dp"/>
 
             <TextView
                 android:paddingTop="30dp"

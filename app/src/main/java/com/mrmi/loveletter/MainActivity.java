@@ -1,32 +1,37 @@
 package com.mrmi.loveletter;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.Button;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText userMoodInput, userNeedsInput, partnerToken;
+    private EditText userMoodInput, userNeedsInput, partnerTokenInput;
     private ImageButton sendToPartner;
     private TextView partnerMoodView, partnerNeedsView;
     private String userToken = "";
     private SharedPreferences sharedPreferences;
     private ImageButton helpButton;
 
-    private Button copyUserToken;
+    private ImageButton copyUserToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private void initialiseViews() {
         userNeedsInput = findViewById(R.id.userNeedsInput);
         partnerNeedsView = findViewById(R.id.partnerNeedsView);
-        partnerToken = findViewById(R.id.partnerToken);
+        partnerTokenInput = findViewById(R.id.partnerTokenInput);
         sendToPartner = findViewById(R.id.sendToPartner);
         userMoodInput = findViewById(R.id.userMoodInput);
         partnerMoodView = findViewById(R.id.partnerMoodView);
@@ -61,14 +66,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialiseListeners() {
-        //Send a notification to the user with the partnerToken token
-        sendToPartner.setOnClickListener(v -> sendNotificationToUserWithToken(partnerToken.getText().toString()));
+        //Send a notification to the user with the partnerTokenInput token
+        sendToPartner.setOnClickListener(v -> sendNotificationToUserWithToken(partnerTokenInput.getText().toString()));
 
         //Copy the user's token to the clipboard
-        copyUserToken.setOnClickListener(v -> copyText(getUserToken(false)));
+        copyUserToken.setOnClickListener(v -> {
+            userToken = getUserToken(false);
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share your token with your partner!");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, userToken);
+            startActivity(Intent.createChooser(sharingIntent,"Share with"));
+        });
 
         //Save partner's token when the user changes it
-        partnerToken.addTextChangedListener(new TextWatcher() {
+        partnerTokenInput.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 savePartnerToken();
             }
@@ -94,7 +106,18 @@ public class MainActivity extends AppCompatActivity {
         updateUserViews();
 
         //Display the partner's token
-        partnerToken.setText(getPartnerToken());
+        partnerTokenInput.setText(getPartnerToken());
+
+        userMoodInput.clearFocus();
+        userNeedsInput.clearFocus();
+        partnerTokenInput.clearFocus();
+        hideSoftKeyboard(MainActivity.this);
+    }
+
+    @Override
+    public void onResume() {
+        updatePartnerViews();
+        super.onResume();
     }
 
     //Get the user's token
@@ -120,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         saveUserMood();
         saveUserNeeds();
         updateUserViews();
+        displayLetterSentDialog();
     }
 
     //Get partner's mood text from Shared preferences
@@ -152,14 +176,6 @@ public class MainActivity extends AppCompatActivity {
         return sharedPreferences.getString("userNeeds", "");
     }
 
-    //Copies the given String into the device's clipboard
-    private void copyText(String text) {
-        ClipboardManager myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE); //Get the clipboard service
-        ClipData myClip = ClipData.newPlainText("text", text); //Put the given text into the clip
-        myClipboard.setPrimaryClip(myClip); //Put the clip into the clipboard
-        Toast.makeText(this, getString(R.string.copied_user_token), Toast.LENGTH_SHORT).show(); //Notify the user that the text was copied to the clipboard
-    }
-
     //Get the user's mood and needs from Shared preferences and display them
     private void updateUserViews() {
         String userMoodText = getUserMood(), userNeedsText = getUserNeeds();
@@ -176,11 +192,43 @@ public class MainActivity extends AppCompatActivity {
 
     //Save the partner's token using Shared preferences
     private void savePartnerToken() {
-        sharedPreferences.edit().putString("partnerToken", partnerToken.getText().toString()).apply();
+        sharedPreferences.edit().putString("partnerToken", partnerTokenInput.getText().toString()).apply();
     }
 
     //Get partner's token from Shared preferences
     private String getPartnerToken() {
         return sharedPreferences.getString("partnerToken", "");
+    }
+
+    //Alert the user that their letter has been sent
+    private void displayLetterSentDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.letter_sent, null);
+        alert.setView(dialogView);
+        AlertDialog alertDialog = alert.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialogView.findViewById(R.id.okayButton).setOnClickListener(v-> alertDialog.dismiss());
+    }
+
+    //Hide keyboard and remove focus from edit text
+    private void hideSoftKeyboard(Activity activity) {
+        if (activity == null) return;
+        if (activity.getCurrentFocus() == null) return;
+
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+
+        activity.findViewById(R.id.focusHolder).requestFocus();
+    }
+
+    //Hide keyboard when the user clicks outside of an edit text
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            hideSoftKeyboard(MainActivity.this);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

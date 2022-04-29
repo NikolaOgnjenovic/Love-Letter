@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="@color/white"
+    app:contentPadding="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="center"
+            android:textColor="@color/theme_primary"
+            android:textSize="40sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/letter_sent"/>
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:id="@+id/okayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/okay"
+            android:background="@drawable/rounded_button_pink"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
