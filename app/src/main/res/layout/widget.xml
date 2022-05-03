@@ -14,21 +14,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:fontFamily="@font/dongle_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/partner_needs"
             android:textColor="@color/theme_secondary"
-            android:textSize="22sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:maxLength="20"
-            android:fontFamily="@font/dongle_bold"
             android:id="@+id/widgetPartnerNeedsView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/theme_secondary"
-            android:textSize="18sp"/>
+            android:textSize="14sp"/>
     </LinearLayout>
 
 
@@ -40,21 +38,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:fontFamily="@font/dongle_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/partner_mood"
             android:textColor="@color/theme_secondary"
-            android:textSize="22sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:maxLength="20"
-            android:fontFamily="@font/dongle_bold"
             android:id="@+id/widgetPartnerMoodView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/theme_secondary"
-            android:textSize="18sp"/>
+            android:textSize="14sp"/>
     </LinearLayout>
 
 </RelativeLayout>

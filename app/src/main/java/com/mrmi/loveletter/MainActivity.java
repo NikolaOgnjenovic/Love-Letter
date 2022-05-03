@@ -1,9 +1,10 @@
 package com.mrmi.loveletter;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         userMoodInput.clearFocus();
         userNeedsInput.clearFocus();
         partnerTokenInput.clearFocus();
-        hideSoftKeyboard(MainActivity.this);
+        //hideSoftKeyboard(MainActivity.this);
     }
 
     @Override
@@ -215,26 +216,25 @@ public class MainActivity extends AppCompatActivity {
         dialogView.findViewById(R.id.okayButton).setOnClickListener(v-> alertDialog.dismiss());
     }
 
-    //Hide keyboard and remove focus from edit text
-    private void hideSoftKeyboard(Activity activity) {
-        if (activity == null) return;
-        if (activity.getCurrentFocus() == null) return;
-
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-
-        //Hide the cursors from all edit texts
-        userMoodInput.setCursorVisible(false);
-        userNeedsInput.setCursorVisible(false);
-        partnerTokenInput.setCursorVisible(false);
+    //Removes focus from an edit text when the user taps outside of it
+    private void removeEditTextFocus(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
     }
 
-    //Hide keyboard when the user clicks outside of an edit text
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (getCurrentFocus() != null) {
-            hideSoftKeyboard(MainActivity.this);
-        }
+        removeEditTextFocus(ev);
         return super.dispatchTouchEvent(ev);
     }
 }
