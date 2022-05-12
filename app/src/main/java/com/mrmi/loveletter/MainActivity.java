@@ -21,6 +21,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +47,17 @@ public class MainActivity extends AppCompatActivity {
         initialiseObjects();
 
         getUserToken(true);
+
+        initialiseAds();
+    }
+
+
+    private void initialiseAds() {
+        MobileAds.initialize(this, initializationStatus -> {});
+
+        AdView bannerAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        bannerAdView.loadAd(adRequest);
     }
 
     //Quit the app when the user presses the back button
@@ -142,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendNotificationToUserWithToken(String token) {
+        if(token.equals("")) {
+            displayNullPartnerTokenDialog();
+            return;
+        }
+
         FcmNotificationSender notificationSender = new FcmNotificationSender(token, userMoodInput.getText().toString(), userNeedsInput.getText().toString(), this);
         notificationSender.sendNotification();
         saveUserMood();
@@ -209,6 +228,18 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.letter_sent, null);
+        alert.setView(dialogView);
+        AlertDialog alertDialog = alert.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialogView.findViewById(R.id.okayButton).setOnClickListener(v-> alertDialog.dismiss());
+    }
+
+    //Displays a dialog which alerts the user that they need to input their partner's token in order to send a letter
+    private void displayNullPartnerTokenDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.null_partner_token, null);
         alert.setView(dialogView);
         AlertDialog alertDialog = alert.show();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

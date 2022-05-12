@@ -20,4 +20,5 @@
     <string name="notification_text">Your partner has sent you a letter!</string>
     <string name="letter_sent">Letter successfully sent!</string>
     <string name="okay">Okay!</string>
+    <string name="null_partner_token">Letter sending failed! Please input your partner\'s token in order to send them a letter!</string>
 </resources>

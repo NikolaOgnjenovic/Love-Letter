@@ -13,6 +13,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class Help extends AppCompatActivity {
 
     private ImageButton backButton;
@@ -28,6 +32,7 @@ public class Help extends AppCompatActivity {
 
         initialiseViews();
         initialiseListeners();
+        initialiseAds();
     }
 
     //Go to the main activity the back button is pressed
@@ -35,6 +40,14 @@ public class Help extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         goToMainActivity();
+    }
+
+    private void initialiseAds() {
+        MobileAds.initialize(this, initializationStatus -> {});
+
+        AdView bannerAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        bannerAdView.loadAd(adRequest);
     }
 
     private void initialiseViews() {

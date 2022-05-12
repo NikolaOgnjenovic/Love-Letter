@@ -1,240 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/theme_primary"
+    android:orientation="vertical"
     android:padding="20dp"
     tools:context=".MainActivity"
     tools:ignore="Overdraw">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageButton
+        android:id="@+id/helpButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/help"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:layout_gravity="end" />
+
+    <ScrollView
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/theme_primary">
+        android:layout_weight="1"
+        android:background="@color/theme_primary"
+        android:layout_marginBottom="10dp">
 
-        <View
-            android:id="@+id/focusHolder"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
-
-        <ImageButton
-            android:id="@+id/helpButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/help"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_menu_info_details"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:background="@color/theme_primary"
-            android:id="@+id/titleView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textSize="80sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/helpButton" />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:background="@color/theme_primary"
-            android:id="@+id/linear1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleView">
+            <View
+                android:id="@+id/focusHolder"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_gravity="center"
+                android:id="@+id/titleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/theme_primary"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textSize="80sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linear1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/user_needs"
-                android:textSize="32sp" />
-
-            <EditText
-                android:focusableInTouchMode="true"
-                android:textCursorDrawable="@null"
-                android:id="@+id/userNeedsInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:autofillHints=""
-                android:fontFamily="@font/dongle_bold"
-                android:hint="@string/user_needs_input_hint"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="28sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:background="@color/theme_primary"
-            android:id="@+id/linear2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear1">
-
-            <TextView
-                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
                 android:background="@color/theme_primary"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/theme_primary"
+                    android:text="@string/user_needs"
+                    android:textSize="32sp" />
+
+                <EditText
+                    android:id="@+id/userNeedsInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:autofillHints=""
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/dongle_bold"
+                    android:hint="@string/user_needs_input_hint"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textCursorDrawable="@null"
+                    android:textSize="28sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/user_mood"
-                android:textSize="32sp" />
+                android:layout_marginTop="20dp"
+                android:background="@color/theme_primary"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear1">
 
-            <EditText
-                android:focusableInTouchMode="true"
-                android:textCursorDrawable="@null"
-                android:id="@+id/userMoodInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:autofillHints=""
-                android:fontFamily="@font/dongle_bold"
-                android:hint="@string/user_mood_input_hint"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="28sp" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/theme_primary"
+                    android:text="@string/user_mood"
+                    android:textSize="32sp" />
 
-        <ImageButton
-            android:id="@+id/sendToPartner"
-            android:layout_width="64dp"
-            android:layout_height="44dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/help"
-            android:rotation="-45"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_menu_send"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear2" />
-
-        <TextView
-            android:background="@color/theme_primary"
-            android:id="@+id/partnerNeeds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/partner_needs"
-            android:textSize="44sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sendToPartner" />
-
-        <TextView
-            android:background="@color/theme_primary"
-            android:id="@+id/partnerNeedsView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="44sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerNeeds" />
-
-        <TextView
-            android:background="@color/theme_primary"
-            android:id="@+id/partnerMood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/partner_mood"
-            android:textSize="44sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerNeedsView" />
-
-        <TextView
-            android:background="@color/theme_primary"
-            android:id="@+id/partnerMoodView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="44sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerMood" />
-
-        <TextView
-            android:layout_marginTop="100dp"
-            android:id="@+id/partnerTokenInputView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/theme_primary"
-            android:text="@string/partner_token_view"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partnerMoodView"
-            tools:ignore="RtlSymmetry" />
-
-
-        <LinearLayout
-            android:id="@+id/tokenLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/partnerTokenInputView">
+                <EditText
+                    android:id="@+id/userMoodInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:autofillHints=""
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/dongle_bold"
+                    android:hint="@string/user_mood_input_hint"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textCursorDrawable="@null"
+                    android:textSize="28sp" />
+            </LinearLayout>
 
             <ImageButton
-                android:id="@+id/clearPartnerToken"
+                android:id="@+id/sendToPartner"
+                android:layout_width="64dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/help"
+                android:rotation="-45"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_menu_send"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear2" />
+
+            <TextView
+                android:id="@+id/partnerNeeds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@color/theme_primary"
+                android:text="@string/partner_needs"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sendToPartner" />
+
+            <TextView
+                android:id="@+id/partnerNeedsView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_primary"
+                android:textAlignment="center"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/partnerNeeds" />
+
+            <TextView
+                android:id="@+id/partnerMood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/theme_primary"
+                android:text="@string/partner_mood"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/partnerNeedsView" />
+
+            <TextView
+                android:id="@+id/partnerMoodView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_primary"
+                android:textAlignment="center"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/partnerMood" />
+
+            <TextView
+                android:id="@+id/partnerTokenInputView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:background="@color/theme_primary"
+                android:text="@string/partner_token_view"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/partnerMoodView"
+                tools:ignore="RtlSymmetry" />
+
+
+            <LinearLayout
+                android:id="@+id/tokenLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/partnerTokenInputView">
+
+                <ImageButton
+                    android:id="@+id/clearPartnerToken"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/copy_your_token"
+                    android:scaleType="fitCenter"
+                    android:src="@android:drawable/ic_menu_delete" />
+
+                <EditText
+                    android:id="@+id/partnerTokenInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/dongle_bold"
+                    android:hint="@string/partners_token"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textCursorDrawable="@null"
+                    android:textSize="32sp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/shareUserToken"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/copy_your_token"
                 android:scaleType="fitCenter"
-                android:src="@android:drawable/ic_menu_delete" />
+                android:src="@android:drawable/ic_menu_share"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tokenLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-            <EditText
-                android:id="@+id/partnerTokenInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:focusableInTouchMode="true"
-                android:fontFamily="@font/dongle_bold"
-                android:hint="@string/partners_token"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textCursorDrawable="@null"
-                android:textSize="32sp" />
-        </LinearLayout>
-
-        <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/copy_your_token"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_menu_share"
-            android:id="@+id/shareUserToken"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tokenLayout"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

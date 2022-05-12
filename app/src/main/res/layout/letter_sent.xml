@@ -14,7 +14,7 @@
         <TextView
             android:gravity="center"
             android:textColor="@color/theme_primary"
-            android:textSize="40sp"
+            android:textSize="34sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/letter_sent"/>
