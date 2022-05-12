@@ -251,10 +251,12 @@
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:adUnitId="ca-app-pub-8738374268088231/1392803646"
         android:layout_margin="5dp"
         android:layout_gravity="center"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <!--Test ID:ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+     My ID:  ads:adUnitId="ca-app-pub-8738374268088231/1392803646"-->
 </LinearLayout>
