@@ -32,6 +32,7 @@
             android:layout_height="wrap_content">
 
             <View
+                android:contentDescription=""
                 android:id="@+id/focusHolder"
                 android:layout_width="1dp"
                 android:layout_height="1dp"
@@ -126,7 +127,7 @@
                 android:layout_width="64dp"
                 android:layout_height="44dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/help"
+                android:contentDescription="@string/send_letter"
                 android:rotation="-45"
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/ic_menu_send"
