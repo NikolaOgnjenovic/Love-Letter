@@ -140,7 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
     //Get the user's token
     private String getUserToken(boolean calledFromOnCreate) {
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> userToken = task.getResult());
+        try {
+            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> userToken = task.getResult());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         System.out.println("[MRMI]: User's token: " + userToken);
 
         if(!calledFromOnCreate && userToken.equals("")) {

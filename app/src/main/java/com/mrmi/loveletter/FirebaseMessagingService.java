@@ -71,10 +71,9 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     //Set notification properties and notify the user
     private void notifyUser() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID");
-        builder.setSmallIcon(android.R.drawable.btn_star);
 
         Intent resultIntent = new Intent(this, MainActivity.class);
-        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) ? PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT);
 
         builder.setContentTitle(getString(R.string.app_name));
         builder.setContentText(getString(R.string.notification_text));

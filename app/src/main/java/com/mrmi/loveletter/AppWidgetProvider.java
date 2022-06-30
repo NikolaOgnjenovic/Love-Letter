@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.widget.RemoteViews;
 
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
@@ -16,7 +17,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
             System.out.println("[MRMI]: Updating widget");
 
             Intent intent = new Intent(context, MainActivity.class);
-            @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) ? PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT);
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
             remoteViews.setOnClickPendingIntent(R.id.widget, pendingIntent);
